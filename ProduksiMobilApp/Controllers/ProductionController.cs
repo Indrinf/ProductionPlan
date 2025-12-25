@@ -14,7 +14,7 @@ namespace ProduksiMobilApp.Controllers
         }
 
         [HttpPost] // Atribut ini harus di sini
-        public IActionResult Calculate(ProductionPlan input)
+        public IActionResult Create(ProductionPlan input)
         {
             int[] vals = { input.Senin, input.Selasa, input.Rabu, input.Kamis, input.Jumat, input.Sabtu, input.Minggu };
             int total = vals.Sum();
@@ -42,7 +42,7 @@ namespace ProduksiMobilApp.Controllers
                 input.FixMinggu = results[6];
             }
 
-            _history.Add(input); // Simpan hasil perbaikan ke list/DB [cite: 45]
+            _history.Add(input); 
             return RedirectToAction("Index");
         }
     }

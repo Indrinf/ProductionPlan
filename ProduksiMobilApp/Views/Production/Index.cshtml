@@ -1,21 +1,77 @@
-﻿@model List<ProduksiMobilApp.Models.ProductionPlan>
+﻿@model IEnumerable<ProduksiMobilApp.Models.ProductionPlan>
 
 <form asp-action="Create" method="post">
     <div class="row">
-        <div class="col"><label>Senin</label><input name="Senin" class="form-control" /></div>
+        <div class="col">
+            <label>Senin</label>
+            <input name="Senin" type="number" class="form-control" value="0" />
+        </div>
+        <div class="col">
+            <label>Selasa</label>
+            <input name="Selasa" type="number" class="form-control" value="0" />
+        </div>
+        <div class="col">
+            <label>Rabu</label>
+            <input name="Rabu" type="number" class="form-control" value="0" />
+        </div>
+        <div class="col">
+            <label>Kamis</label>
+            <input name="Kamis" type="number" class="form-control" value="0" />
+        </div>
+        <div class="col">
+            <label>Jumat</label>
+            <input name="Jumat" type="number" class="form-control" value="0" />
+        </div>
+        <div class="col">
+            <label>Sabtu</label>
+            <input name="Sabtu" type="number" class="form-control" value="0" />
+        </div>
+        <div class="col">
+            <label>Minggu</label>
+            <input name="Minggu" type="number" class="form-control" value="0" />
+        </div>
     </div>
     <button type="submit" class="btn btn-success mt-3">Simpan & Ratakan</button>
 </form>
 
-<table class="table mt-4">
+<hr />
+
+<table class="table table-bordered mt-4">
     <thead>
-        <tr><th>Status</th><th>Sen</th><th>Sel</th><th>Rab</th><th>Kam</th><th>Jum</th><th>Sab</th><th>Min</th></tr>
+        <tr>
+            <th>Status</th>
+            <th>Sen</th>
+            <th>Sel</th>
+            <th>Rab</th>
+            <th>Kam</th>
+            <th>Jum</th>
+            <th>Sab</th>
+            <th>Min</th>
+        </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr><td>Original</td><td>@item.Senin</td><td>@item.Selasa</td><td>...</td></tr>
-            <tr class="table-info"><td>Perbaikan</td><td>@item.FixSenin</td><td>@item.FixSelasa</td><td>...</td></tr>
+            <tr>
+                <td>Original</td>
+                <td>@item.Senin</td>
+                <td>@item.Selasa</td>
+                <td>@item.Rabu</td>
+                <td>@item.Kamis</td>
+                <td>@item.Jumat</td>
+                <td>@item.Sabtu</td>
+                <td>@item.Minggu</td>
+            </tr>
+            <tr class="table-info">
+                <td><b>Perbaikan</b></td>
+                <td>@item.FixSenin</td>
+                <td>@item.FixSelasa</td>
+                <td>@item.FixRabu</td>
+                <td>@item.FixKamis</td>
+                <td>@item.FixJumat</td>
+                <td>@item.FixSabtu</td>
+                <td>@item.FixMinggu</td>
+            </tr>
         }
     </tbody>
 </table>
