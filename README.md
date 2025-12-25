@@ -1,6 +1,8 @@
 # Laporan Pengerjaan Task 3: Kueri Database SQL Server
 
 File ini berisi seluruh jawaban kueri SQL untuk pengelolaan database kependidikan (Fakultas, Prodi, dan Mahasiswa) sesuai dengan instruksi pengerjaan.
+## Task 2
+<img width="1365" height="635" alt="Task 2" src="https://github.com/user-attachments/assets/1a60716a-4959-4c93-8b36-5014804bce12" />
 
 ## Jawaban Kueri SQL (Nomor 1 - 15)
 
