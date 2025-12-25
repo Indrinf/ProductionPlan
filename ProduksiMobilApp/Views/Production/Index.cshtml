@@ -1,0 +1,21 @@
+﻿@model List<ProduksiMobilApp.Models.ProductionPlan>
+
+<form asp-action="Create" method="post">
+    <div class="row">
+        <div class="col"><label>Senin</label><input name="Senin" class="form-control" /></div>
+    </div>
+    <button type="submit" class="btn btn-success mt-3">Simpan & Ratakan</button>
+</form>
+
+<table class="table mt-4">
+    <thead>
+        <tr><th>Status</th><th>Sen</th><th>Sel</th><th>Rab</th><th>Kam</th><th>Jum</th><th>Sab</th><th>Min</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr><td>Original</td><td>@item.Senin</td><td>@item.Selasa</td><td>...</td></tr>
+            <tr class="table-info"><td>Perbaikan</td><td>@item.FixSenin</td><td>@item.FixSelasa</td><td>...</td></tr>
+        }
+    </tbody>
+</table>
