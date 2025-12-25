@@ -1,12 +1,13 @@
-# Laporan Pengerjaan Task 3: Kueri Database SQL Server
+# Laporan Pengerjaan Task 2&3
 
-File ini berisi seluruh jawaban kueri SQL untuk pengelolaan database kependidikan (Fakultas, Prodi, dan Mahasiswa) sesuai dengan instruksi pengerjaan.
 ## Task 2
 <img width="1365" height="635" alt="Task 2" src="https://github.com/user-attachments/assets/1a60716a-4959-4c93-8b36-5014804bce12" />
 
 ## Jawaban Kueri SQL (Nomor 1 - 15)
 
-### 1. Pembuatan Struktur Tabel
+## Jawaban Kueri SQL (Nomor 1 - 15)
+
+
 ```sql
 -- 1. Buat Tabel Fakultas
 CREATE TABLE Fakultas (
@@ -32,9 +33,11 @@ CREATE TABLE Mahasiswa (
     TanggalLahir DATETIME, 
     Alamat VARCHAR(100)
 );
+```
 
 ![List Table](images/image.png)
 
+```sql
 -- 4. Menentukan Primary Key pada Tabel Fakultas
 ALTER TABLE Fakultas ADD CONSTRAINT PK_Fakultas PRIMARY KEY (KodeFakultas);
 
@@ -43,14 +46,18 @@ ALTER TABLE Prodi ADD CONSTRAINT PK_Prodi PRIMARY KEY (KodeProdi, KodeFakultas);
 
 -- 6a. Data Fakultas
 INSERT INTO Fakultas VALUES (1, 'Teknik', 'Ahmad Riyadi'), (2, 'Pertanian', 'Paiman'), (3, 'Ekonomi', 'Sukhemi'), (4, 'Keguruan', 'Suharni');
+```
 
 ![Data Fakultas](images/image-1.png)
 
+```sql
 -- 6b. Data Prodi
 INSERT INTO Prodi VALUES (11, 1, 'Teknik Informatika', 'Bachtiar Dwi Effendi'), (21, 2, 'Agroteknologi', 'Bahrum'), (31, 3, 'Manajemen', 'Vita'), (32, 3, 'Akuntansi', 'Siti Maisaroh'), (41, 4, 'PPKN', 'Sigit'), (42, 4, 'Sejarah', 'Gunawan'), (43, 4, 'Pendidikan Matematika', 'Tri'), (44, 4, 'Bimbingan Konseling', 'Siswanti'), (45, 4, 'PGSD', 'Haniek');
+```
 
 ![Data Prodi](images/image-2.png)
 
+```sql
 -- 6c. Contoh Data Mahasiswa Utama
 INSERT INTO Mahasiswa (NPM, KodeProdi, NamaMahasiswa, TempatLahir, TanggalLahir, Alamat) VALUES 
 ('08110167', 11, 'Andi', 'Jakarta', '1988-03-12', 'Gunung Kidul'),
@@ -59,57 +66,62 @@ INSERT INTO Mahasiswa (NPM, KodeProdi, NamaMahasiswa, TempatLahir, TanggalLahir,
 
 -- 7. Menambah Kolom TanggalDaftar
 ALTER TABLE Mahasiswa ADD TanggalDaftar DATETIME;
+```
 
 ![Data Mahasiswa](images/image-3.png)
 
+```sql
 -- 8. Menampilkan Mahasiswa kelahiran tahun 70-an
 SELECT NamaMahasiswa, Alamat FROM Mahasiswa 
 WHERE TanggalLahir BETWEEN '1970-01-01' AND '1979-12-31';
+```
 
 ![70 an](images/image-4.png)
 
+```sql
 -- 9. Menampilkan Nama Mahasiswa dan Nama Prodinya
 SELECT m.NamaMahasiswa, p.NamaProdi 
 FROM Mahasiswa m 
 JOIN Prodi p ON m.KodeProdi = p.KodeProdi;
+```
 
 ![Mahasiswa dan Prodi](images/image-5.png)
-
+```sql
 -- 10. Menampilkan 3 Mahasiswa tertua dari Fakultas Teknik (KodeFakultas = 1)
 SELECT TOP 3 m.NamaMahasiswa, m.Alamat 
 FROM Mahasiswa m 
 JOIN Prodi p ON m.KodeProdi = p.KodeProdi 
 WHERE p.KodeFakultas = 1 
 ORDER BY m.TanggalLahir ASC;
-
+```
 ![Mahasiswa Tertua](images/image-6.png)
-
+```sql
 -- 11. Menampilkan jumlah Mahasiswa yang beralamat di Sleman
 SELECT COUNT(*) AS JumlahMahasiswaSleman FROM Mahasiswa 
 WHERE Alamat LIKE '%Sleman%';
-
+```
 ![Sleman](images/image-7.png)
-
+```sql
 -- 12. Update TanggalDaftar untuk seluruh Mahasiswa
 UPDATE Mahasiswa SET TanggalDaftar = '2013-09-03';
-
+```
 ![Tanggal Daftar](images/image-8.png)
-
+```sql
 -- 13. Menampilkan Mahasiswa dengan nama awalan 'D'
 SELECT * FROM Mahasiswa WHERE NamaMahasiswa LIKE 'D%';
-
-![alt text](images/images/image-9.png)
-
+```
+![alt text](images/image-9.png)
+```sql
 -- 14. Update TanggalLahir Mahasiswa bernama Joko
 UPDATE Mahasiswa SET TanggalLahir = '1990-01-20' 
 WHERE NamaMahasiswa = 'Joko';
-
+```
 ![alt text](images/image-10.png)
-
+```sql
 -- 15. Menampilkan Nama Prodi dan jumlah Mahasiswanya
 SELECT p.NamaProdi, COUNT(m.NPM) AS JumlahMahasiswa 
 FROM Prodi p 
 LEFT JOIN Mahasiswa m ON p.KodeProdi = m.KodeProdi 
 GROUP BY p.NamaProdi;
-
+```
 ![alt text](images/image-11.png)
